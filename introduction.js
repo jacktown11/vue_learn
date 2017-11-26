@@ -1,3 +1,13 @@
+Vue.component('todo-item',{
+	template: '<li>this is a todo item</li>'
+});
+
+var ol = new Vue({
+	el: '#wrap-ol'
+});
+
+
+
 var app = new Vue({
 	el: '#app',
 	data: {
