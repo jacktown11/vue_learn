@@ -17,22 +17,24 @@
 </head>
 <body>
 
-	<div id="todo-list-example">
-		<input
-			v-model="newTodoText" 
-			v-on:keyup.enter = "addNewTodo"
-			type="text"
-		>
-		<ul>
-			<li 
-				is="todo-item" 
-				v-for="(todo, index) in todos" 
-				v-bind:key="todo.id" 
-				v-bind:title="todo.title" 
-				v-on:remove="todos.splice(index,1)"
-			></li>
-		</ul>
+	<div id="example-1">
+		<button v-on:click="counter += 1">Click</button>
+		<p>The button has been click {{counter}} times.</p>
 	</div>
+
+	<div id="example-2">
+		<button v-on:click="greet">Greet</button>
+	</div>
+
+	<div id="example-3">
+		<button v-on:click="say('hello')">Hello</button>
+		<button v-on:click="say('hi')">Hi</button>
+	</div>
+
+	<div id="example-4">
+		<button type="submit" v-on:click="warn('From cannot be submited.',$event)">Submit</button>
+	</div>
+
 
 	<script src="https://unpkg.com/vue"></script>
 	<script src="test.js"></script>

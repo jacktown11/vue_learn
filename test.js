@@ -1,39 +1,51 @@
-Vue.component('todo-item',{
-	template: '\
-		<li>\
-		  {{ title }}\
-		  <button v-on:click="$emit(\'remove\')">X</button>\
-		</li>\
-		',
-	props: ['title']
-});
-new Vue({
-	el: '#todo-list-example',
+var example1 = new Vue({
+	el: '#example-1',
 	data: {
-		newTodoText: '',
-		todos: [
-			{
-				id: 1,
-				title: 'Do the dishes'
-			},
-			{
-				id: 2,
-				title: 'Take out the trash'
-			},
-			{
-				id: 3,
-				title: 'Mow the lawn'
-			}
-		],
-		nextTodoId: 4
+		counter: 0
+	}
+});
+
+var example2 = new Vue({
+	el: '#example-2',
+	data: {
+		name: 'vue.js'
 	},
 	methods: {
-		addNewTodo: function(){
-			this.todos.push({
-				id: this.nextTodoId++,
-				title: this.newTodoText
-			});
-			this.newTodoText = '';
+		greet: function(event){
+			console.log('Hello, this is ' + this.name);
+
+			//if a native dom event
+			if(event){
+				console.log('this is from tag ' + event.target.tagName)
+			}
 		}
 	}
 });
+
+var example3 = new Vue({
+	el: '#example-3',
+	data: {
+
+	},
+	methods: {
+		say: function(message){
+			console.log(message);
+		}
+	}
+});
+
+var example4 = new Vue({
+	el: '#example-4',
+	data: {
+
+	},
+	methods: {
+		warn: function(message,event){
+			if(event){
+				event.preventDefault();
+			}
+			console.log(message);
+		}
+	}
+});
+
