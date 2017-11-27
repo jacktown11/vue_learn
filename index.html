@@ -17,24 +17,75 @@
 </head>
 <body>
 
-	<div id="example-1">
-		<button v-on:click="counter += 1">Click</button>
-		<p>The button has been click {{counter}} times.</p>
-	</div>
+	<form id="example-1" action="">
+		<p style="white-space: pre-line;">The message is:<br>{{message}}</p>
+		<textarea v-model="message" name="detail" id="detail" cols="30" rows="10" placeholder="write the detail"></textarea>
+		<br><hr>
 
-	<div id="example-2">
-		<button v-on:click="greet">Greet</button>
-	</div>
+		<input type="checkbox" id="checkbox" name="checkbox" v-model="checked" @click="report">
+		<label for="checkbox">{{checked}}</label>
+		<br><hr>
 
-	<div id="example-3">
-		<button v-on:click="say('hello')">Hello</button>
-		<button v-on:click="say('hi')">Hi</button>
-	</div>
+		<input type="checkbox" id="checkbox1" value="jack" v-model="checkedNames">
+		<label for="checkbox1">jack</label>
+		<input type="checkbox" id="checkbox2" value="john" v-model="checkedNames">
+		<label for="checkbox2">john</label>
+		<input type="checkbox" id="checkbox3" value="tom" v-model="checkedNames">
+		<label for="checkbox3">tom</label>
+		<p>Checked Names: {{checkedNames}}</p>
+		<br><hr>
 
-	<div id="example-4">
-		<button type="submit" v-on:click="warn('From cannot be submited.',$event)">Submit</button>
-	</div>
+		<input type="radio" id="radio1" value="one" v-model="radio">
+		<label for="radio1">one</label>
+		<input type="radio" id="radio1" value="two" v-model="radio">
+		<label for="radio2">two</label>
+		<p>Checked Radio: {{radio}}</p>
+		<br><hr>
 
+		<select name="select" id="select" v-model="selected">
+			<option disabled value="">Please select one</option>
+			<option value="A">A</option>
+			<option value="B">B</option>
+			<option value="C">C</option>
+		</select>
+		<P>The selected value is: {{selected}}</P>
+		<br><hr>
+
+		<select name="select2" id="select2" v-model="selectedM" multiple>
+			<option value="A">A</option>
+			<option value="B">B</option>
+			<option value="C">C</option>
+		</select>
+		<P>The selected value is: {{selectedM}}</P>
+		<br><hr>
+
+		<select name="select3" id="select3" v-model="selected3">
+			<option v-for="option in options" v-bind:value="option.value">{{option.text}}</option>
+		</select>
+		<P>The selected value is: {{selected3}}</P>
+		<br><hr>
+
+		<input id="checkbox4" type="checkbox" v-model="toggle" v-bind:true-value="a" v-bind:false-value="b">
+		<label for="checkbox4">checkbox4</label>
+		<p>the vm.toggle is {{toggle}}</p>
+		<br><hr>
+
+		<input id="radio3" type="radio" v-model="radiox" name="radiox" v-bind:value="a">
+		<label for="radio3">radio3</label>
+		<input id="radio4" type="radio" v-model="radiox" name="radiox" v-bind:value="b">
+		<label for="radio4">radio4</label>
+		<p>the vm.radiox/vm.a is {{radiox}}</p>
+		<br><hr>
+
+		<select name="select1645" id="select1645" v-model="select1645">
+			<option v-bind:value="{number: 5}">item1</option>
+			<option v-bind:value="{number: 6}">item2</option>
+		</select>
+		<p>{{typeof select1645 + select1645.number}} </p>
+
+
+
+	</form>
 
 	<script src="https://unpkg.com/vue"></script>
 	<script src="test.js"></script>
