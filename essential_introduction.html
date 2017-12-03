@@ -13,6 +13,161 @@
 <body>
 	<h2><a href="./index.html">vue.js demos</a>&nbsp;&gt;&gt;&nbsp;<a href="#">essential introduction</a></h2>
 	<hr>
-	<script src="https://unpkg.com/vue"></script>
+
+	<div id="example1">
+			{{message}}
+	</div>
+	<hr>
+
+	<div id="example2">
+		<span v-bind:title="message">
+			Hover you mouse over me to the dynamically bound title!
+		</span>
+	</div>
+	<hr>
+
+	<div id="example3">
+		<span v-if="seen">Now you see me!</span>
+	</div>
+	<hr>
+
+	<div id="example4">
+		<ul>
+			<li v-for="todo in todos">{{todo.text}}</li>
+		</ul>
+	</div>
+	<hr>
+
+	<div id="example5">
+		<button v-on:click="reverseMessage">{{message}}</button> 
+	</div>
+	<hr>
+
+	<div id="example6">
+		<input type="text" v-model="message" placeholder="input to see reaction"></input> 
+		<p>{{message}}</p>
+	</div>
+	<hr>
+
+	<div id="example7">
+		<ol>
+			<to-do-item1></to-do-item1>
+			<to-do-item1></to-do-item1>
+			<to-do-item1></to-do-item1>
+		</ol>
+	</div>
+	<hr>
+
+	<div id="example8">
+		<ol>
+			<to-do-item2 
+				v-for="item in todos" 
+				v-bind:todo="item" 
+				v-bind:key="item.id"
+			></to-do-item2>
+		</ol>
+	</div>
+	<hr>
+
+	
+
+	
+	<script src="./vue.js"></script>
+	<script>
+		var example1 = new Vue({
+			el: '#example1',
+			data: {
+				message: 'hello vue!'
+			}
+		});
+
+		var example2 = new Vue({
+			el: '#example2',
+			data: {
+				message: 'You loaded this page on ' + new Date().toLocaleString()
+			}
+		});
+
+		var example3 = new Vue({
+			el: '#example3',
+			data: {
+				seen: true
+			}
+		});
+
+		var example4 = new Vue({
+			el: '#example4',
+			data: {
+				todos: [
+					{
+						text: 'learn javascript'
+					},
+					{
+						text: 'learn vue'
+					},
+					{
+						text: 'build something awsome'
+					}
+				]
+			}
+		});
+
+		var example5 = new Vue({
+			el: '#example5',
+			data: {
+				message: 'click me to reverse myself!'
+			},
+			methods: {
+				reverseMessage: function(){
+					this.message = this.message.split('').reverse().join('');
+				}
+			}
+		});
+
+		var example6 = new Vue({
+			el: '#example6',
+			data: {
+				message: ''
+			}
+		});
+
+		Vue.component('toDoItem1',{
+			template: '<li>this is a todo item.</li>'
+		});
+
+		var example7 = new Vue({
+			el: '#example7',
+			data: {
+
+			}
+		});
+
+		Vue.component('toDoItem2',{
+			template: '<li>{{todo.text}}</li>',
+			props: ['todo']
+		});
+
+		var example8 = new Vue({
+			el: '#example8',
+			data: {
+				todos: [
+					{
+						id: 0,
+						text: 'book'
+					},
+					{
+						id: 1,
+						text: 'computer'
+					},
+					{
+						id: 2,
+						text: 'phone'
+					}
+				]
+			}
+		});
+
+
+	</script>
 </body>
 </html>

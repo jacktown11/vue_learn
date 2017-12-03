@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>essential&gt;template syntax</title>
+	<style>
+		body{
+			width: 50%;
+			margin: auto;
+		}
+	</style>
+</head>
+<body>
+	<h2><a href="./index.html">vue.js demos</a>&nbsp;&gt;&gt;&nbsp;<a href="#">essential template syntax</a></h2>
+	<hr>
+	
+	<div id="example1">
+		<p v-once>static message: {{message}}</p>
+		<p>dynamic message: {{message}}</p>		
+	</div>
+	<hr>
+
+	<div id="example2">
+		<p>using mustaches: {{message}}</p>
+		<p>using v-html directive: <span v-html="message"></span></p>
+		<self-template></self-template>
+		<p style="color: green;">So v-html can't be used in template partials.</p>
+	</div>
+	<hr>
+
+	<div id="example3">
+		<button v-bind:disabled="isDisabled">disabled button</button>
+		<button>live button</button>
+	</div>
+	<hr>
+
+	<div id="example4">
+		<p v-bind:id="'id' + id">{{message.split('').reverse().join('')}}</p>
+	</div>
+	<hr>
+
+
+	<script src="./vue.js"></script>
+	<script>
+		var example1 = new Vue({
+			el: '#example1',
+			data: {
+				message: 'this is the initial message.'
+			}
+		});
+
+		Vue.component('self-template',{
+			template: '<p v-html="innerHtml">in p</p>',
+			data: function(){
+				return {
+					innerHtml: '<span v-html="rawHtml1">ok</span>',
+					rawHtml1: '<span>good</span>',
+					rawHtml2: '<span>bad</span>'
+				};
+			}
+		});
+		var example2 = new Vue({
+			el: '#example2',
+			data: {
+				message: '<span>inner message</span>'
+			}
+		});
+
+		var example3 = new Vue({
+			el: '#example3',
+			data: {
+				isDisabled: ''
+			}
+		});
+
+		var example4 = new Vue({
+			el: '#example4',
+			data: {
+				id: '2',
+				message: 'hello'
+			}
+		});
+
+	</script>
+</body>
+</html>
