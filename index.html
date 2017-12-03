@@ -3,71 +3,33 @@
 <head>
 	<meta charset="UTF-8">
 	<title>vue learn</title>
+	<style>
+		body{
+			width: 50%;
+			margin: auto;
+		}
+	</style>
 </head>
 <body>
-	<div id="example">
-		<my-component></my-component>
-	</div><hr>
-
-	<div id="example1">
-		<my-component></my-component>
-	</div><hr>
-
-	<div id="example2">
-		<simple-component></simple-component>
-		<simple-component></simple-component>
-		<simple-component></simple-component>
-	</div><hr>
-
-	<div id="example3">
-		<cp-example3 message="hello!"></cp-example3>
-	</div><hr>
-
-	<div id="example4">
-		<cp-example4 my-message="hello kebab!"></cp-example4>
-	</div><hr>
-
-	<div id="example5">
-		<input type="text" v-model="parentMsg"><br>
-		<cp-example5 v-bind:message="parentMsg"></cp-example5>
-	</div><hr>
-
-	<div id="example6">
-		<cp-example6 v-bind="person" v-bind:do-Something="thing"></cp-example6>
-	</div><hr>
-
-	<!-- using v-on with custom events -->
-	<div id="example7">
-		<p>{{total}}</p>
-		<cp-example7 v-on:increment="incrementTotal"></cp-example7>
-		<cp-example7 v-on:increment="incrementTotal"></cp-example7>
-	</div><hr>
-
-	<!-- the .sync modifier -->
-	<div id="example8" style="border: 1px solid black;" @click="incrementFoo">
-		<p>the foo in parent: {{foo}}</p>
-		<cp-example8 v-bind:bar.sync="foo"></cp-example8>
-	</div><hr>
-
-	<!-- currency input -->
-	<div id="example9">
-		<cp-example9 v-model="money"></cp-example9>
-		<p>{{money}}</p>
-	</div><hr>
-
-	<div id="example10">
-	  <currency-input label="Price" v-model="price"></currency-input>
-	  <currency-input label="Shipping" v-model="shipping"></currency-input>
-	  <currency-input label="Handling" v-model="handling"></currency-input>
-	  <currency-input label="Discount" v-model="discount"></currency-input>
-
-	  <p>Total: ${{ total }}</p>
-	</div><hr>
-
-
-
-	<script src="https://unpkg.com/vue"></script>
-	<script src="test.js"></script>
+	<h1>
+		demos for <a href="https://vuejs.org/v2/guide/">vue.js</a>
+	</h1>
+	<ul>
+		<li>essential
+			<ul>
+				<li><a href="essential_introduction.html">introduction</a></li>
+			</ul>
+		</li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
 
 </body>
 </html>
