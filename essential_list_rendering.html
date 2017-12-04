@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>essential&gt;list rendering</title>
+	<style>
+		body{
+			width: 50%;
+			margin: auto;
+		}
+	</style>
+</head>
+<body>
+	<h2><a href="./index.html">vue.js demos</a>&nbsp;&gt;&gt;&nbsp;<a href="#">essential list rendering</a></h2>
+	<hr>
+
+	<div id="example1">
+		<ul>
+			<li v-for="item in items">{{item.message}}</li>
+		</ul>
+	</div><hr>
+
+	<div id="example2">
+		<ul>
+			<li v-for="(item,index) in items">
+				{{parentMsg}} - {{index}} -	{{item.message}}
+			</li>
+		</ul>
+	</div><hr>
+
+	<div id="example3">
+		<ul>
+			<li v-for="(value, key) in object">
+				{{key}} -- {{value}}
+			</li>
+		</ul>
+	</div><hr>
+
+	<div id="example4">
+		<ul>
+			<li v-for="num in evenNumers">{{num}}</li>
+		</ul>
+	</div><hr>
+
+	<div id="example5">
+		<ul>
+			<li v-for="n in 10">{{n}}</li>
+		</ul>
+	</div><hr>
+	
+	<div id="example6">
+		<ul>
+			<template v-for="(item,key) in items">
+				<li style="font-weight: bold;">{{key}}</li>
+				<li>{{item}}</li>				
+			</template>
+		</ul>
+	</div><hr>
+
+	<div id="example7">
+		<ul>
+			<li v-for="item in items" v-if="!item.isFinished">{{item.text}}</li>
+		</ul>
+	</div>
+	<hr>
+
+	<div id="example8" @click="removeOneItem" style="background-color: #eee;">
+		<ul v-if="items.length > 0">
+			<li v-for="(item,index) in items">{{index}} -- {{item}}</li>
+		</ul>
+		<p v-else>there is no todos</p>
+	</div>
+	<hr>
+
+	<div id="example9">
+		<input type="text" @keyup.enter="addItem" v-model="todo" placeholder="input a todo item">
+		<ul>
+			<li 
+				is="cp1" 
+				v-for="(item,index) in items" 
+				v-bind:content="item.content" 
+				v-on:remove="items.splice(index,1)"
+				v-bind:key="item.id"
+			></li>
+		</ul>
+	</div><hr>
+	
+	<script src="./vue.js"></script>
+	<script>
+		var example1 = new Vue({
+			el: '#example1',
+			data: {
+				items: [
+					{
+						message: 'item 1'
+					},
+					{
+						message: 'item 2'
+					}
+				]
+			}
+		});
+
+		var example2 = new Vue({
+			el: '#example2',
+			data: {
+				parentMsg: 'Parent',
+				items: [
+					{message: 'item1'},
+					{message: 'item2'}
+				]
+			}
+		});
+
+		var example3 = new Vue({
+			el: '#example3',
+			data: {
+				object: {
+					name: 'jack',
+					year: '1993',
+					professional: 'programmer'
+				}
+			}
+		});
+
+		var example4 = new Vue({
+			el: '#example4',
+			data: {
+				numbers: [
+					1,2,3,4,5,6
+				]
+			},
+			computed: {
+				evenNumers: function(){
+					return this.numbers.filter(function(item){
+						return item%2 === 0;
+					});
+				}
+			}
+		});
+
+		var example5 = new Vue({
+			el: '#example5'
+		});
+
+		var example6 = new Vue({
+			el: '#example6',
+			data: {
+				items: {
+					name: 'jack',
+					year: '1993',
+					professional: 'programmer'
+				}
+			}
+		});
+
+		var example7 = new Vue({
+			el: '#example7',
+			data: {
+				items: [
+					{
+						isFinished: true,
+						text: 'read a book'
+					},
+					{
+						isFinished: false,
+						text: 'write down the note'
+					},
+					{
+						isFinished: false,
+						text: 'wash clothes'
+					}
+				]
+			}
+		});
+
+		var example8 = new Vue({
+			el: '#example8',
+			data: {
+				items: ['read','search','ask']
+			},
+			methods: {
+				removeOneItem: function(){
+					if(!!this.items.length){
+						this.items.pop();
+					}
+				}
+			}
+		});
+
+		Vue.component('cp1',{
+			template: '<li>\
+			{{content}} &nbsp;&nbsp;\
+			<button @click="$emit(\'remove\')">X</button>\
+			</li>',
+			props: ['content']
+		});
+		var example9 = new Vue({
+			el: '#example9',
+			data: {
+				items: [
+					{
+						id: 1,
+						content: 'search'
+					},
+					{
+						id: 2,
+						content: 'read'
+					},
+					{
+						id: 3,
+						content: 'ask'
+					}
+				],
+				todo: '',
+				nextId: 4
+			},
+			methods: {
+				addItem: function(){
+					this.items.push({
+						id: this.nextId++,
+						content: this.todo
+					});
+
+					this.todo = ''; // clear the input field
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

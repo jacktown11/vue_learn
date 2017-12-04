@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>essential&gt;conditional rendering</title>
+	<style>
+		body{
+			width: 50%;
+			margin: auto;
+		}
+	</style>
+</head>
+<body>
+	<h2><a href="./index.html">vue.js demos</a>&nbsp;&gt;&gt;&nbsp;<a href="#">essential conditional rendering</a></h2>
+	<hr>
+
+	<div id="example1" @click="switchContent" style="background-color: #ccc;">
+		<template v-if="shownPart === 'A'">
+			<h1>part A</h1>
+			<p>part A paragraph</p>
+		</template>
+		<template v-else-if="shownPart === 'B'">
+			<h1>part B</h1>
+			<p>part B paragraph</p>
+		</template>
+		<div v-else="shownPart === 'C'">
+			<h1>part C</h1>
+			<p>part C paragraph</p>
+		</div>
+		<p>Click to switch content above</p>
+	</div><hr>
+	
+	<div id="example2">
+		<template v-if="inputType === 'username'">
+			<label for="username">Username:</label>
+			<input type="text" placeholder="please input your username">
+		</template>
+		<template v-if="inputType === 'email'">
+			<label for="email">Email:</label>
+			<input type="email" placeholder="please input your email">
+		</template>
+		<br>
+		<button @click="toggleInputType">Toggle Input Type</button>
+	</div><hr>
+
+	<div id="example3">
+		<template v-if="inputType === 'username'">
+			<label for="username">Username:</label>
+			<input type="text" placeholder="please input your username" key="username-input">
+		</template>
+		<template v-else>
+			<label for="email">Email:</label>
+			<input type="email" placeholder="please input your email" key="email-input">
+		</template>
+		<br>
+		<button @click="toggleInputType">Toggle Input Type</button>
+	</div><hr>
+
+	<script src="./vue.js"></script>
+	<script>
+		var example1 = new Vue({
+			el: '#example1',
+			data: {
+				shownPart: 'A'
+			},
+			methods: {
+				switchContent: function(){
+					switch(this.shownPart){
+						case 'A': 
+							this.shownPart = 'B';
+							break;
+						case 'B': 
+							this.shownPart = 'C';
+							break;
+						case 'C': 
+							this.shownPart = 'A';
+							break;
+						default:
+							break;
+					}
+				}
+			}
+		});
+
+		var example2 = new Vue({
+			el: '#example2',
+			data: {
+				inputType: 'username'
+			},
+			methods: {
+				toggleInputType: function(){
+					this.inputType = this.inputType === 'username'?'email':'username'; 
+				}
+			}
+		});
+
+		var example3 = new Vue({
+			el: '#example3',
+			data: {
+				inputType: 'username'
+			},
+			methods: {
+				toggleInputType: function(){
+					this.inputType = this.inputType === 'username'?'email':'username'; 
+				}
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>essential&gt;event handling</title>
+	<style>
+		body{
+			width: 50%;
+			margin: auto;
+		}
+	</style>
+</head>
+<body>
+	<h2><a href="./index.html">vue.js demos</a>&nbsp;&gt;&gt;&nbsp;<a href="#">essential event handling</a></h2>
+	<hr>
+
+	<div id="example1">
+		<button v-on:click="counter++">Click me</button>
+		<p>the button has been clicked {{counter}} times.</p>
+	</div>
+	<hr>
+	
+	<div id="example2">
+		<button v-on:click="greet">Greet</button>	
+	</div>
+	<hr>
+	
+	<div id="example3">
+		<button v-on:click="say('hi')">say hi</button>
+		<button v-on:click="say('hello')">say hello</button>
+	</div>
+	<hr>
+	
+	<div id="example4">
+		<form action="">
+			<button @click="handleSubmit('can not be submited',$event)">submit</button>
+		</form>		
+	</div>
+	<hr>
+	
+	<div id="example5">
+		
+	</div>
+	<hr>
+	
+	<div id="example6">
+		
+	</div>
+	<hr>
+	
+	<script src="./vue.js"></script>
+	<script>
+		var example1 = new Vue({
+			el: '#example1',
+			data: {
+				counter: 0
+			}
+		});
+		var example2 = new Vue({
+			el: '#example2',
+			data: {
+				name: 'vue.js'
+			},
+			methods: {
+				greet: function(event){
+					alert('hello,' + this.name + '!');
+
+					if(event){
+						console.log(event.target);
+					}
+				}
+			}
+		});
+		var example3 = new Vue({
+			el: '#example3',
+			data: {
+
+			},
+			methods: {
+				say: function(msg){
+					alert(msg);
+				}
+			}
+		});
+		var example4 = new Vue({
+			el: '#example4',
+			data: {
+
+			},
+			methods:{
+				handleSubmit: function(msg,event){
+					if(event){
+						event.preventDefault();
+						console.log('event passed successfully');
+					}else{
+						console.log('fail to pass event');
+					}
+					alert(msg);
+				}
+			}
+		});
+		var example5 = new Vue({
+			el: '#example5',
+			data: {
+
+			}
+		});
+	</script>
+</body>
+</html>
